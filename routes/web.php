@@ -34,4 +34,6 @@ Route::prefix('tasks')
 
     // Tambahkan route untuk /progress
     Route::get('progress', 'progress')->name('progress');
+    // Tambahkan route untuk /move
+    Route::patch('{id}/move', 'move')->name('move');
     });

@@ -123,17 +123,20 @@ class TaskController extends Controller
       ),
     ];
 
-//    @include('partials.task_column',
-//    [
-//      'title' => 'Not Started',
-//      'tasks' => $tasks['not_started'],
-//      'leftStatus' => null,
-//      'rightStatus' => 'in_progress',
-//    ])
-
     return view('tasks.progress', [
       'pageTitle' => $title,
       'tasks' => $tasks,
     ]);
-}
+  }
+
+  public function move(int $id, Request $request)
+  {
+    $task = Task::findOrFail($id);
+
+    $task->update([
+      'status' => $request->status,
+    ]);
+
+    return redirect()->route('tasks.progress');
+  }
 }
