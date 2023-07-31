@@ -65,4 +65,19 @@ class TaskController extends Controller
 
     return redirect()->route('tasks.index');
   }
+
+  public function update(Request $request, $id)
+  {
+    $task = Task::find($id);
+    $task->update([
+      // data task yang berasal dari formulir
+      $task->name = $request->name,
+      $task->detail = $request->detail,
+      $task->due_date = $request->due_date,
+      $task->status = $request->status,
+    ]);
+
+    // Code untuk melakukan redirect menuju GET /tasks
+    return redirect()->route('tasks.index');
+  }
 }
