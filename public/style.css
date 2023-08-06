@@ -174,9 +174,20 @@ body {
     border-right: 1px solid #d8d8d8;
 }
 
+.task-list-header-owner-name {
+  padding: 16px;
+  width: 15%;
+}
+
 .table-body-progress {
     width: 15%;
     padding: 16px;
+    border-right: 1px solid #d8d8d8; /* Ditambahkan */
+}
+
+.table-body-owner-name {
+  width: 15%;
+  padding: 16px;
 }
 
 .menu-icon {
