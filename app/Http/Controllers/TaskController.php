@@ -99,4 +99,54 @@ class TaskController extends Controller
     // Melakukan redirect menuju tasks.index
     return redirect()->route('tasks.index');
   }
+
+  public function progress()
+  {
+    $title = 'Task Progress';
+
+    $allTasks = Task::all();
+
+    $filteredTasks = $allTasks->groupBy('status');
+
+    $tasks = [
+      Task::STATUS_NOT_STARTED => $filteredTasks->get(
+        Task::STATUS_NOT_STARTED, []
+      ),
+      Task::STATUS_IN_PROGRESS => $filteredTasks->get(
+        Task::STATUS_IN_PROGRESS, []
+      ),
+      Task::STATUS_IN_REVIEW => $filteredTasks->get(
+        Task::STATUS_IN_REVIEW, []
+      ),
+      Task::STATUS_COMPLETED => $filteredTasks->get(
+        Task::STATUS_COMPLETED, []
+      ),
+    ];
+
+    return view('tasks.progress', [
+      'pageTitle' => $title,
+      'tasks' => $tasks,
+    ]);
+  }
+
+  public function move(int $id, Request $request)
+  {
+    $task = Task::findOrFail($id);
+
+    $task->update([
+      'status' => $request->status,
+    ]);
+
+    return redirect()->route('tasks.progress');
+  }
+
+  // Fungsi untuk mengubah status card menjadi Completed
+  public function completed(Request $request, $id)
+  {
+    $task = Task::findOrFail($id);
+    $task->status = 'Completed';
+    $task->save();
+
+    return redirect()->route('tasks.progress');
+  }
 }
