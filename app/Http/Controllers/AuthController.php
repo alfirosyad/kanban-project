@@ -73,4 +73,10 @@ class AuthController extends Controller
         'email' => 'This email not found.',
       ]);
   }
+
+  public function logout()
+  {
+    Auth::logout();
+    return redirect()->route('auth.login');
+  }
 }

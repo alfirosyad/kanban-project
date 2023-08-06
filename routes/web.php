@@ -48,4 +48,5 @@ Route::name('auth.')
     // Tambahkan route-route di bawah
     Route::get('login', 'loginForm')->name('loginForm');
     Route::post('login', 'login')->name('login');
+    Route::post('logout', 'logout')->name('logout'); // Ditambahkan
   });
