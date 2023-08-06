@@ -139,4 +139,14 @@ class TaskController extends Controller
 
     return redirect()->route('tasks.progress');
   }
+
+  // Fungsi untuk mengubah status card menjadi Completed
+  public function completed(Request $request, $id)
+  {
+    $task = Task::findOrFail($id);
+    $task->status = 'Completed';
+    $task->save();
+
+    return redirect()->route('tasks.progress');
+  }
 }

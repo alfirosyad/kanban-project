@@ -36,4 +36,5 @@ Route::prefix('tasks')
     Route::get('progress', 'progress')->name('progress');
     // Tambahkan route untuk /move
     Route::patch('{id}/move', 'move')->name('move');
-    });
+    Route::post('{id}/completed','completed')->name('completed');
+  });
