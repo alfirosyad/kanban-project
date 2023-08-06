@@ -5,6 +5,7 @@
 @section('main')
   <div class="form-container">
     <h1 class="form-title">{{ $pageTitle }}</h1>
+
     <form
       class="form"
       method="POST"
@@ -53,5 +54,7 @@
 
       <button type="submit" class="form-button">Submit</button>
     </form>
+    <p class="auth-link">Already have an account? <a href="{{ route('auth.login') }}">Login here</a></p>
+  </div>
   </div>
 @endsection
